@@ -8,11 +8,14 @@ class Solution{
 public:
     long maximumSumSubarray(int K, vector<int> &arr , int N){
         // code here
-        long sum=0,count=0,i=0,max=0;
+        // if(N<K){
+        //     return 0;
+        // }
+        long sum=0,count=0,i=0,max=0,last=N-K;
         
         next:
         for(i = count; i < count+K; i++){
-            if(i>=arr.size()){
+            if(i>=N){
                 break;
             }
             sum=sum+arr[i];
@@ -21,8 +24,10 @@ public:
         if(sum>max){
             max=sum;
         }
-        
-        if(count<=arr.size()-K){
+        if(last<0){
+            last=0;
+        }
+        if(count<=N-K){
             sum=0;
             goto next;
         }
